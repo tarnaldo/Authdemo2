@@ -1,0 +1,24 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        include: info,health,env,mappings,httptrace,conditions,logfile,scheduledtasks,jolokia,shutdown
+  endpoint:
+    health:
+      show-details: when-authorized
+    shutdown:
+      enabled: true
+---
+spring:
+  profiles:
+    active: local
+  security:
+    oauth2:
+      resource:
+            user-info-uri: Introspect_endpoint_when_used
+            token-type: Bearer
+            jwk:
+               key-set-uri: https://blackstrap.auth0.com/.well-known/jwks.json
+            api-audience: authdemo2
+
+            
